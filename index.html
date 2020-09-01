@@ -9,42 +9,98 @@
       content="word count, word counter, word counter github"
     />
     <meta name="author" content="Joel P. Mugalu" />
-    <title>
-      Word counter
-    </title>
+    <title>Word counter</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
       <!--MAIN CONTENT-->
       <div class="content">
+        <!--LEFT SIDE-->
+        <div class="intro-text">
+          <nav>
+            <ul class="feedback-panel">
+              <li>FeedBack</li>
+              <li>|</li>
+              <li>Help</li>
+            </ul>
+          </nav>
+          <!--Desktop Button-->
+          <button class="desktop-app">Desktop App</button>
+        </div>
+        <!--EDIT ACTIONS-->
         <div class="text-holder">
+          <div class="edit-actions">
+              <button class="actions">Bold</button>
+              <button class="actions">Italics</button>
+              <button class="actions">H1</button>
+              <button class="actions">H2</button>
+              <button class="actions">H3</button>
+              <button class="actions">Quote</button>
+              <button class="actions">Bullet</button>
+              <button class="actions">Numbers</button>
+            </div>
           <!--TEXT AREA-->
           <textarea id="text-area" placeholder="Type Or Copy Paste Text Here">
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum repellat nulla debitis laudantium perferendis consectetur vel sint porro molestias et ut, natus laborum? Quas neque sed expedita aliquam, dolore consectetur. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus illum libero totam, voluptatum dolor fuga minima, culpa molestias eligendi soluta aut! Tempora, necessitatibus consequuntur! Dicta possimus ipsa nobis itaque molestiae. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex, excepturi! Explicabo aperiam nemo nihil dolorum dignissimos cum nostrum maiores impedit voluptates accusantium veritatis consequuntur ipsum officia, repellendus ut deserunt! Provident.
-        </textarea
-          >
+Hemingway App makes your writing bold and clear. 
+
+The app highlights lengthy, complex sentences and common errors; if you see a yellow sentence, shorten or split it. If you see a red highlight, your sentence is so dense and complicated that your readers will get lost trying to follow its meandering, splitting logic — try editing this sentence to remove the red.
+
+You can utilize a shorter word in place of a purple one. Mouse over them for hints.
+
+Adverbs and weakening phrases are helpfully shown in blue. Get rid of them and pick words with force, perhaps.
+
+Phrases in green have been marked to show passive voice.
+
+You can format your text with the toolbar.
+
+Paste in something you're working on and edit away. Or, click the Write button and compose something new.
+
+        </textarea>
         </div>
         <!--INFO LOG-->
         <div class="info-tab">
-          <div class="basic-info">
-            <div class="word">Words:</div>
-            <div class="word">Letters:</div>
-            <div class="word">Sentences:</div>
-            <div class="word">Characters:</div>
-            <div class="word">Paragraphs:</div>
+          <!--MODE BUTTONS-->
+          <div class="mode-buttons">
+              <button>Write</button>
+              <button>Edit</button>
+            </ul>
           </div>
+
+          <!--HEMINGWAY-->
+          <div class="hemingway-app">
+            <h1>Hemingway</h1>
+            <h2><em>Editor</em></h2>
+          </div>
+          <!--INFO-LOGS-->
           <!--READABILITY-->
           <div class="readability">
-            <div class="word">Grade:</div>
-            <div class="word">Outlook:</div>
+            <div class="readability-word">
+              <p>Readability</p>
+            </div>
+            <div class="grade">
+              Grade 6
+            </div>
+            <div class="outlook">
+              Good
+            </div>
+          </div>
+          <div class="basic-info">
+            <div class="words">Words: <span class="items word-count">25</span></div>
+            <div class="words">Letters: <span class="items lettercount">30</span></div>
+            <div class="words">
+              Sentences: <span class="items sentence-count">90</span>
+            </div>
+            <div class="words">
+              Characters: <span class="items char-count">55</span>
+            </div>
+            <div class="words">
+              Paragraphs: <span class="itens par-count">32</span>
+            </div>
           </div>
         </div>
       </div>
-      <!--BUTTON-->
-      <div class="submit">
-        <button type="submit">Generate Count</button>
-      </div>
     </main>
   </body>
+  <script src="app.js"></script>
 </html>
