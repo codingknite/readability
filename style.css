@@ -5,13 +5,13 @@
 }
 
 body {
-  background: rgb(24, 24, 24);
+  background: rgb(17, 17, 17);
   color: white;
   height: 100vh;
 }
 
 .content {
-  background: rgb(30, 30, 30);
+  background: rgb(22, 22, 22);
   width: 100%;
   height: 60vh;
   display: flex;
@@ -55,8 +55,9 @@ body {
   background: none;
   border: none;
   outline: none;
-  color: rgba(109, 109, 109, 0.897);
+  color: rgba(143, 143, 143, 0.897);
   font-size: 15px;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
 .actions:hover {
@@ -68,24 +69,27 @@ body {
 
 textarea {
   width: 100%;
-  height: 90%;
+  height: 91%;
   resize: none;
   background: rgb(30, 30, 30);
   outline: none;
   border: none;
+  font-family: Roboto, Georgia, "Times New Roman", Times, serif;
   font-size: 19px;
-  color: beige;
+  color: rgb(238, 252, 214);
   text-align: justify;
   margin-top: 30px;
   padding: 20px;
 }
 
 .info-tab {
+  display: none;
   height: 50%;
   padding-right: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-top: 1%;
 }
 
 .mode-buttons {
@@ -93,18 +97,21 @@ textarea {
 }
 
 .mode-buttons button {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
   font-size: 15px;
   outline: none;
   margin-top: 9%;
   padding: 5px;
-  color: aliceblue;
+  color: rgb(180, 220, 255);
   border: gray solid 2px;
   cursor: pointer;
   background: none;
 }
 
-.active-mode-button {
-  background: rgba(128, 128, 128, 0.418);
+.active {
+  background: rgb(3, 3, 3) !important;
+  color: white !important;
+  border: rgb(180, 220, 255) solid 2px !important;
 }
 
 .hemingway-app {
@@ -118,12 +125,14 @@ textarea {
 }
 
 .readability-word p {
-  color: azure;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  color: rgb(180, 220, 255);
   font-size: 22px;
   font-weight: bold;
 }
 
 .grade {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
   color: rgb(35, 126, 35);
   font-size: 20px;
   font-weight: 800;
@@ -131,7 +140,8 @@ textarea {
 }
 
 .outlook {
-  color: azure;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  color: rgb(180, 220, 255);
   font-size: 20px;
   font-weight: 800;
   padding: 5px;
@@ -143,15 +153,33 @@ textarea {
 }
 
 .words {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
   font-size: 17px;
   font-weight: 400;
 }
 
 .items {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
   font-size: 17px;
   font-weight: 400;
 }
 
+.submit {
+  margin: 2%;
+  text-align: center;
+}
+
+.submit-btn {
+  padding: 5px;
+  background: rgb(20, 89, 216);
+  border: none;
+  color: white;
+  font-weight: 200;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  text-align: center;
+  cursor: pointer;
+}
 /*TABLET SIZE*/
 @media screen and (max-width: 1024px) {
   .content {
