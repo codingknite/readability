@@ -143,9 +143,9 @@ generateButton.addEventListener('click', () => {
             document.querySelector(objectSelectors.grade).style.color = 'tomato';
             document.querySelector(objectSelectors.outlook).textContent = 'Fair. Aim For ' + (readability - 1);
         } else {
-            document.querySelector(objectSelectors.grade).textContent = 'Grade ' + readability;
+            document.querySelector(objectSelectors.grade).textContent = 'Postgraduate';
             document.querySelector(objectSelectors.grade).style.color = 'red';
-            document.querySelector(objectSelectors.outlook).textContent = 'Poor. Aim For ' + (readability - 1);
+            document.querySelector(objectSelectors.outlook).textContent = 'Poor. Aim for 11 - 14 ';
         };
     } else {
         //Set All To Zero
