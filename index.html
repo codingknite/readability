@@ -39,14 +39,14 @@
         <!--EDIT ACTIONS-->
         <div class="text-holder">
           <div class="edit-actions">
-              <button class="actions">Bold</button>
-              <button class="actions">Italics</button>
-              <button class="actions">H1</button>
-              <button class="actions">H2</button>
-              <button class="actions">H3</button>
-              <button class="actions">Quote</button>
-              <button class="actions">Bullet</button>
-              <button class="actions">Numbers</button>
+              <button id="bold-text" class="actions">Bold</button>
+              <button id="italic-text" class="actions">Italics</button>
+              <button id="h1-text" class="actions">H1</button>
+              <button id="h2-text" class="actions">H2</button>
+              <button id="h3-text" class="actions">H3</button>
+              <button id="quoted-text" class="actions">Quote</button>
+              <button id="bulleted-text" class="actions">Bullet</button>
+              <button id="numbered-text" class="actions">Numbers</button>
             </div>
           <!--TEXT AREA-->
           <textarea id="text-area" placeholder="Type Or Copy Paste Text Here">Hello World! My Name Is Joel</textarea>
@@ -88,7 +88,10 @@
               Characters: <span class="items char-count">55</span>
             </div>
             <div class="words">
-              Paragraphs: <span class="itens par-count">32</span>
+              Paragraphs: <span class="items par-count">32</span>
+            </div>
+            <div class="words">
+              Reading Time: <span class="items reading-time">21</span>
             </div>
           </div>
         </div>
@@ -96,7 +99,7 @@
 
       <!--SUBMIT BUTTON-->
       <div class="submit">
-        <button class="submit-btn">Generate Word Count</button>
+        <button type="button" class="submit-btn">Generate Word Count</button>
       </div>
     </main>
   </body>
