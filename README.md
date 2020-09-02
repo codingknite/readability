@@ -1,4 +1,4 @@
-#Readability
+# Readability
 
 Readability Is a web application that measures the readability of a given piece of text.
 I got the Inspiration to build this app from the [Hemingway Editor](http://www.hemingwayapp.com/).
