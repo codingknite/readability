@@ -1,100 +1,127 @@
+//Selectors Object
+const objectSelectors = {
+    wordCount: '.word-count',
+    letterCount: '.letter-count',
+    sentenceCount: '.sentence-count',
+    characterCount: '.char-count',
+    paragraphCount: '.par-count',
+    readingTime: '.reading-time',
+    grade: '.grade',
+    outlook: '.outlook',
+    textarea: "text-area"
+};
+
 //Initialization Function
 init();
 
-//All Variables
-// Don't declare your variables outside the scopes they will be needed. Variables must be declared under the scope they are used 
-// so they can be available for garbage-collection and it's better in terms of security
-// use `let` for variables you will constantly re-define and `const` for variables you will only define once.
-// Const must be defined at the time of usage. ex: `you cannot do : const generateButton;` you must assign a value when defining it
-let generateButton, userInput, arrayOfWords, words, letters, sentences, characters, paragraphs, readability, writeBtn, editBtn;
-
-generateButton = document.querySelector('.submit-btn');
+const generateButton = document.querySelector('.submit-btn');
 
 //EVENT LISTENER FOR GENERATE WORD COUNT
 generateButton.addEventListener('click', function () {
+
+    let wordsLength, sentencesLength, charactersLength, paragraphsLength;
     //1. Get Input Value;
-    // Use const here: `userInput`
-    userInput = document.getElementById('text-area').value;
+    const userInput = document.getElementById(objectSelectors.textarea).value;
 
-    //2. Obtain Array of Words
-    // use const here too: `arrayOfWords`
-    arrayOfWords = userInput.match(/[\S ]/gi).join('').split(' ');
+    if (userInput !== '') {
+        //2. Obtain Array of Words
+        const arrayOfWords = userInput.match(/[\S ]/gi).join('').split(' ');
 
-    //3. Generate number of Words, Letters, Sentences, Characters, Paragraphs
+        //3. Generate number of Words, Letters, Sentences, Characters, Paragraphs
+        //Words
+        wordsLength = arrayOfWords.length;
 
-    //Words
-    // Change this for something more meaningful , like `wordsLength` and use const too.
-    words = arrayOfWords.length;
+        //Letters
+        lettersLength = userInput.match(/[a-z]/gi).length;
 
-    //Letters
-    // More meaningful too `lettersLength` & use const as well
-    letters = userInput.match(/[a-z]/gi).length;
+        //Sentences (. ! ?)
+        if (!userInput.match(/[.!?]/g)) {
+            sentencesLength = 0;
+        } else {
+            sentencesLength = userInput.match(/[.!?]/g).length;
+        };
 
-    //Sentences (. ! ?)
-    // 
-    if (userInput.match(/[.!?]/g).length === null) {
-        // More meaning full 
-        sentences = 0;
+        //Characters
+        charactersLength = userInput.match(/\S/g).length;
+
+        //Paragraphs
+        paragraphsLength = 1;
+        if (!userInput.match(/\n/g)) {
+            paragraphsLength = paragraphsLength;
+        } else {
+            paragraphsLength = userInput.match(/\n/g).length;
+        };
+
+        //Calculate Readability
+        /*
+        Formula = 0.0588 * L - 0.296 * S - 15.8
+        Where L =  Average Number Of Letters Per 100 Words and S = Average number of letters per 100 words.
+        */
+        let averageOfLetters = Math.round((lettersLength / wordsLength) * 100);
+
+        let averageOfSentences = Math.round((sentencesLength / wordsLength) * 100);
+
+        const readability = Math.round((0.0588 * averageOfLetters) - (0.296 * averageOfSentences) - 15.8);
+
+        //Reading Time 
+        let timeInSeconds, timeInMinutes, timeInHours;
+
+        const wordsPerMinute = 200;
+
+        let readingTimeInSeconds = Math.round((wordsLength / wordsPerMinute) * 60);
+
+        if (readingTimeInSeconds > 0 && readingTimeInSeconds < 60) {
+            timeInSeconds = readingTimeInSeconds + ' Seconds';
+            document.querySelector(objectSelectors.readingTime).textContent = timeInSeconds;
+        } else if (readingTimeInSeconds >= 60 && readingTimeInSeconds < 3600) {
+            timeInMinutes = Math.round(readingTimeInSeconds / 60) + ' Minutes';
+            document.querySelector(objectSelectors.readingTime).textContent = timeInMinutes;
+        } else {
+            timeInHours = Math.round(readingTimeInSeconds / 3600) + ' Hours';
+            document.querySelector(objectSelectors.readingTime).textContent = timeInHours;
+        };
+
+
+        console.log(averageOfLetters);
+        console.log(averageOfSentences);
+        console.log(readability);
+
+        //Display To The UI
+        document.querySelector(objectSelectors.wordCount).textContent = wordsLength;
+        document.querySelector(objectSelectors.letterCount).textContent = lettersLength;
+        document.querySelector(objectSelectors.sentenceCount).textContent = sentencesLength;
+        document.querySelector(objectSelectors.characterCount).textContent = charactersLength;
+        document.querySelector(objectSelectors.paragraphCount).textContent = paragraphsLength;
+
+        //Readability
+        if (readability < 0) {
+            document.querySelector(objectSelectors.grade).textContent = 'Before Grade 1';
+            document.querySelector(objectSelectors.grade).style.color = 'green';
+            document.querySelector(objectSelectors.outlook).textContent = 'Good'
+        } else if (readability > 0 && readability < 11) {
+            document.querySelector(objectSelectors.grade).textContent = 'Grade ' + readability;
+            document.querySelector(objectSelectors.grade).style.color = 'green';
+            document.querySelector(objectSelectors.outlook).textContent = 'Good'
+        } else if (readability >= 11 && readability < 14) {
+            document.querySelector(objectSelectors.grade).textContent = 'Grade ' + readability;
+            document.querySelector(objectSelectors.grade).style.color = 'tomato';
+            document.querySelector(objectSelectors.outlook).textContent = 'Fair. Aim For ' + (readability - 1);
+        } else {
+            document.querySelector(objectSelectors.grade).textContent = 'Grade ' + readability;
+            document.querySelector(objectSelectors.grade).style.color = 'red';
+            document.querySelector(objectSelectors.outlook).textContent = 'Poor. Aim For ' + (readability - 1);
+        };
     } else {
-        // More meaning full
-        sentences = userInput.match(/[.!?]/g).length;
-    };
-    //Characters
-    // More meaning full & use const as well
-    characters = userInput.match(/\S/g).length;
+        //Set All To Zero
+        empty();
 
-    //Paragraphs
-    // Don't use `=== null` in this case, use  `!` like
-    // if(!userInput.match(/\n/g))
-    // `!` means if not defined or if null in this case.
-    if (userInput.match(/\n/g) === null) {
-        // More meaning full 
-        paragraphs = 0;
-    } else {
-        // More meaning full
-        paragraphs = userInput.match(/\n/g).length;
-    };
-
-    //Calculate Readability
-    // Use const as well here
-    readability = Math.floor((0.0588 * letters) - (0.296 * sentences) - 15.8);
-
-    //Display To The UI
-    // extract these selectors into an object.
-    // like
-    // const objSelectors = { wordCount: ".word-count", letterCount: ".letter-count" };
-    // then get them like : document.querySelector(objSelectors[wordCount])
-    // this const object will have to go in the global scope (outside any function) because I see you call it from multiple functions...
-    document.querySelector('.word-count').textContent = words;
-    document.querySelector('.letter-count').textContent = letters;
-    document.querySelector('.sentence-count').textContent = sentences;
-    document.querySelector('.char-count').textContent = characters;
-    document.querySelector('.par-count').textContent = paragraphs;
-
-    //Readability
-    // Too much repeated selectors for grade & outlook, extract them as well and put them into the `objSelectors` object I previously recommended
-    if (readability > 14) {
-        document.querySelector('.grade').textContent = 'Post-Graduate';
-        document.querySelector('.grade').style.color = 'red';
-        document.querySelector('.outlook').textContent = 'Poor. Aim for 14.'
-    } else if (readability < 1) {
-        document.querySelector('.grade').textContent = 'Before Grade 1';
-        document.querySelector('.grade').style.color = 'green';
-        document.querySelector('.outlook').textContent = "Good";
-    } else if (readability > 1 && readability <= 7) {
-        document.querySelector('.grade').textContent = 'Grade ' + readability;
-        document.querySelector('.grade').style.color = 'green';
-        document.querySelector('.outlook').textContent = 'Fair';
-    } else {
-        document.querySelector('.grade').textContent = 'Grade ' + readability;
-        document.querySelector('.grade').style.color = 'green';
-        document.querySelector('.outlook').textContent = 'Good';
+        //Focus On Text Area
+        document.getElementById(objectSelectors.textarea).focus();
     };
 });
 
 //Write Button
-// use const here too
-writeBtn = document.querySelector('.write-btn');
+const writeBtn = document.querySelector('.write-btn');
 
 writeBtn.addEventListener('click', function () {
     //1. Hide Readability Scores
@@ -105,12 +132,11 @@ writeBtn.addEventListener('click', function () {
     editBtn.classList.toggle('active');
 
     //2. Focus On Text Area
-    moveCaretToEnd(document.getElementById('text-area'));
+    moveCaretToEnd(document.getElementById(objectSelectors.textarea));
 });
 
 //Edit Button
-// use const here too
-editBtn = document.querySelector('.edit-btn');
+const editBtn = document.querySelector('.edit-btn');
 
 editBtn.addEventListener('click', function () {
     //Display Readabily Scores
@@ -121,31 +147,41 @@ editBtn.addEventListener('click', function () {
     editBtn.classList.toggle('active');
 
     //Focus On Text Area
-    moveCaretToEnd(document.getElementById('text-area'));
-})
+    moveCaretToEnd(document.getElementById(objectSelectors.textarea));
+});
 
-// change `el` to `elementEvent` : el is too vague, unreadable
-function moveCaretToEnd(el) {
-    el.focus();
-    if (typeof el.selectionStart == "number") {
-        el.selectionStart = el.selectionEnd = el.value.length;
-    } else if (typeof el.createTextRange != "undefined") {
-        var range = el.createTextRange();
+
+function moveCaretToEnd(eventElement) {
+    eventElement.focus();
+    if (typeof eventElement.selectionStart == "number") {
+        eventElement.selectionStart = eventElement.selectionEnd = eventElement.value.length;
+    } else if (typeof eventElement.createTextRange != "undefined") {
+        var range = eventElement.createTextRange();
         range.collapse(false);
         range.select();
     }
 }
 
 function init() {
-    // Use the selectors you put in the global object you created previously with my recommendation, the `objSelectors` object.
-    document.querySelector('.word-count').textContent = 6;
-    document.querySelector('.letter-count').textContent = 22;
-    document.querySelector('.sentence-count').textContent = 1;
-    document.querySelector('.char-count').textContent = 23;
-    document.querySelector('.par-count').textContent = 0;
-    document.querySelector('.grade').textContent = 'Before Grade 1';
-    moveCaretToEnd(document.getElementById('text-area'));
+    document.querySelector(objectSelectors.wordCount).textContent = 6;
+    document.querySelector(objectSelectors.letterCount).textContent = 22;
+    document.querySelector(objectSelectors.sentenceCount).textContent = 1;
+    document.querySelector(objectSelectors.characterCount).textContent = 23;
+    document.querySelector(objectSelectors.paragraphCount).textContent = 0;
+    document.querySelector(objectSelectors.readingTime).textContent = '2 Seconds';
+    document.querySelector(objectSelectors.grade).textContent = 'Before Grade 1';
+    moveCaretToEnd(document.getElementById(objectSelectors.textarea));
 
     //In Edit Mode By Default
     document.querySelector('.edit-btn').classList.add('active');
 };
+
+function empty() {
+    document.querySelector(objectSelectors.wordCount).textContent = 0;
+    document.querySelector(objectSelectors.letterCount).textContent = 0;
+    document.querySelector(objectSelectors.sentenceCount).textContent = 0;
+    document.querySelector(objectSelectors.characterCount).textContent = 0;
+    document.querySelector(objectSelectors.paragraphCount).textContent = 0;
+    document.querySelector(objectSelectors.readingTime).textContent = '0';
+    document.querySelector(objectSelectors.grade).textContent = 'Before Grade 1';
+}
