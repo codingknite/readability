@@ -176,7 +176,7 @@ textarea {
   text-align: center;
   cursor: pointer;
 }
-/*TABLET SIZE*/
+/*TABLET*/
 @media screen and (max-width: 1024px) {
   .content {
     justify-content: space-evenly;
