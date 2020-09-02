@@ -12,13 +12,21 @@ const objectSelectors = {
 };
 
 //Initialization Function
+// Put the function init on top of this. In fact, put ALL YOUR FUNCTIONS (init, moveCaretToEnd, empty) below `objectSelectors`.
+// The reasons behind this is that you should have your functions on top of your usage.
+// If you don't do that, you may get errors anytime for declaration something like "You can't access a function before it's declared".
 init();
 
 const generateButton = document.querySelector('.submit-btn');
 
 //EVENT LISTENER FOR GENERATE WORD COUNT
+// Lets move this function to ES6. ES5 is very old and you should not use it, it's pretty bad
+// ES6: () => {} 
+// ex: generateButton.addEventListener('click', () => {.................});
 generateButton.addEventListener('click', function () {
 
+    // Do we even need many `let`? I'm seeing a lot of variables that are used only for declaration and not modification like `charactersLength` (i may be looking wrong), but if your variables
+    // are only for declaration and usage then use a const. Use let strictly for variables that you will need to redefine.
     let wordsLength, sentencesLength, charactersLength, paragraphsLength;
     //1. Get Input Value;
     const userInput = document.getElementById(objectSelectors.textarea).value;
@@ -66,6 +74,9 @@ generateButton.addEventListener('click', function () {
         //Reading Time 
         let timeInSeconds, timeInMinutes, timeInHours;
 
+        // Move this to the main scope, and rename `WORDS_PER_MINUTE` so `const WORDS_PER_MINUTE` . 
+        // This is because this is a configuration variable, configuration variable we write in upper case to indicate they are readonly
+        // we also declare them in the main scope because they are configuration and may be needed in the future.
         const wordsPerMinute = 200;
 
         let readingTimeInSeconds = Math.round((wordsLength / wordsPerMinute) * 60);
@@ -123,6 +134,8 @@ generateButton.addEventListener('click', function () {
 //Write Button
 const writeBtn = document.querySelector('.write-btn');
 
+// Why Are we not using `objectSelectors` for the selectors here ??
+// Lets trasnform the function here to a ES6 Function as well
 writeBtn.addEventListener('click', function () {
     //1. Hide Readability Scores
     document.querySelector('.hemingway-app').style.visibility = 'hidden';
@@ -136,8 +149,12 @@ writeBtn.addEventListener('click', function () {
 });
 
 //Edit Button
+
 const editBtn = document.querySelector('.edit-btn');
 
+
+// Why Are we not using `objectSelectors` for the selectors here ??
+// ES6 FUNCTION
 editBtn.addEventListener('click', function () {
     //Display Readabily Scores
     document.querySelector('.hemingway-app').style.visibility = 'visible';
@@ -150,18 +167,22 @@ editBtn.addEventListener('click', function () {
     moveCaretToEnd(document.getElementById(objectSelectors.textarea));
 });
 
-
+// trasnform this into a es6 function as follows:
+// const moveCaretToEnd = (eventElement) => { 
+//  ........................................... 
+// }
 function moveCaretToEnd(eventElement) {
     eventElement.focus();
     if (typeof eventElement.selectionStart == "number") {
         eventElement.selectionStart = eventElement.selectionEnd = eventElement.value.length;
     } else if (typeof eventElement.createTextRange != "undefined") {
+        // why are you using `var` here? don't use var. Either `let` or `const`, as mentioned before, use `const` if you're not re-assigning the variable
         var range = eventElement.createTextRange();
         range.collapse(false);
         range.select();
     }
 }
-
+// Transform into es6
 function init() {
     document.querySelector(objectSelectors.wordCount).textContent = 6;
     document.querySelector(objectSelectors.letterCount).textContent = 22;
@@ -175,7 +196,7 @@ function init() {
     //In Edit Mode By Default
     document.querySelector('.edit-btn').classList.add('active');
 };
-
+// Transform into es6
 function empty() {
     document.querySelector(objectSelectors.wordCount).textContent = 0;
     document.querySelector(objectSelectors.letterCount).textContent = 0;
@@ -185,3 +206,5 @@ function empty() {
     document.querySelector(objectSelectors.readingTime).textContent = '0';
     document.querySelector(objectSelectors.grade).textContent = 'Before Grade 1';
 }
+
+// Remember moving your functions to the top, below `objectSelectors`
