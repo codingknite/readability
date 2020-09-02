@@ -42,10 +42,10 @@ body {
 .text-holder {
   width: 30%;
   height: 100%;
-  padding-top: 20px;
 }
 
 .edit-actions {
+  height: 5vh;
   display: flex;
   list-style: none;
   justify-content: space-evenly;
@@ -69,9 +69,8 @@ body {
 
 textarea {
   width: 100%;
-  height: 91%;
+  height: 52vh;
   resize: none;
-  background: rgb(30, 30, 30);
   outline: none;
   border: none;
   font-family: Roboto, Georgia, "Times New Roman", Times, serif;
@@ -80,16 +79,14 @@ textarea {
   text-align: justify;
   margin-top: 30px;
   padding: 20px;
+  background: rgb(26, 26, 26);
 }
 
 .info-tab {
-  display: none;
-  height: 50%;
-  padding-right: 40px;
+  margin-top: 1%;
+  padding-right: 1%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  margin-top: 1%;
 }
 
 .mode-buttons {
@@ -100,7 +97,6 @@ textarea {
   font-family: Roboto, Arial, Helvetica, sans-serif;
   font-size: 15px;
   outline: none;
-  margin-top: 9%;
   padding: 5px;
   color: rgb(180, 220, 255);
   border: gray solid 2px;
@@ -170,7 +166,7 @@ textarea {
 }
 
 .submit-btn {
-  padding: 5px;
+  padding: 10px;
   background: rgb(20, 89, 216);
   border: none;
   color: white;
@@ -190,15 +186,27 @@ textarea {
     display: none;
   }
 
+  textarea {
+    font-size: 13px;
+    height: 52vh;
+    margin-top: 20px;
+    padding: 10px;
+  }
+
   .text-holder {
     width: 60%;
     padding-top: 10px;
+  }
+
+  .submit-btn {
+    padding: 10px;
+    font-size: 17px;
   }
 }
 
 /*MOBILE DEVICES*/
 
-@media screen and (max-width: 538px) {
+@media screen and (max-width: 540px) {
   .content {
     justify-content: space-around;
     height: 60vh;
@@ -229,7 +237,7 @@ textarea {
 
   textarea {
     font-size: 13px;
-    height: 80%;
+    height: 51vh;
     margin-top: 20px;
     padding: 10px;
   }
@@ -292,6 +300,62 @@ textarea {
   }
 
   .items {
+    font-size: 12px;
+  }
+
+  .submit-btn {
+    padding: 7px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .text-holder {
+    width: 60%;
+  }
+
+  .actions {
+    font-size: 9.7px;
+  }
+
+  .actions:hover {
+    font-size: 12px;
+  }
+
+  textarea {
+    font-size: 12px;
+  }
+
+  .hemingway-app {
+    border-bottom: white solid 2px;
+  }
+
+  .hemingway-app h1 {
+    font-size: 14px;
+  }
+
+  .readability-word p {
+    font-size: 12px;
+  }
+
+  .grade {
+    font-size: 12px;
+  }
+
+  .outlook {
+    font-size: 12px;
+  }
+
+  .words {
+    font-size: 10px;
+  }
+
+  .items {
+    font-size: 10px;
+  }
+
+  .submit-btn {
+    padding: 7px;
     font-size: 12px;
   }
 }
