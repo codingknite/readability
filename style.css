@@ -5,13 +5,13 @@
 }
 
 body {
-  background: rgb(17, 17, 17);
+  background: #0d0e0e;
   color: white;
   height: 100vh;
 }
 
 .content {
-  background: rgb(22, 22, 22);
+  background: #111213;
   width: 100%;
   height: 60vh;
   display: flex;
@@ -75,11 +75,11 @@ textarea {
   border: none;
   font-family: Roboto, Georgia, "Times New Roman", Times, serif;
   font-size: 19px;
-  color: rgb(238, 252, 214);
+  color: #dcfaab;
   text-align: justify;
   margin-top: 30px;
   padding: 20px;
-  background: rgb(26, 26, 26);
+  background: #141516;
 }
 
 .info-tab {
@@ -167,7 +167,7 @@ textarea {
 
 .submit-btn {
   padding: 10px;
-  background: rgb(20, 89, 216);
+  background: #1047ad;
   border: none;
   color: white;
   font-weight: 200;
